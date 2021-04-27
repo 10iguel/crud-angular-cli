@@ -1,0 +1,86 @@
+<h5>{{ title }}</h5>
+<div class="row">
+  <form (ngSubmit)="save()" [formGroup]="form" class="col s12" materialize>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_circle</i>
+        <input [(ngModel)]="user.name" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid"
+               class="validate"
+               formControlName="name" id="name"
+               type="text"
+        >
+        <label [class.active]="user.name"
+               data-error="Name is required and needs to contain at least 3 chars"
+               for="name">
+          Name
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input [(ngModel)]="user.email"
+               [class.invalid]="form.controls['email'].touched && !form.controls['email'].valid" class="validate"
+               formControlName="email" id="email"
+               type="email">
+        <label [class.active]="user.email"
+               data-error="Invalid Email"
+               for="email">
+          Email
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">phone</i>
+        <input [(ngModel)]="user.phone" class="validate" formControlName="phone"
+               id="phone" type="text">
+        <label [class.active]="user.phone" for="phone">Phone</label>
+      </div>
+    </div>
+    <div formGroupName="address">
+      <div class="row">
+        <div class="input-field col s8">
+          <i class="material-icons prefix">place</i>
+          <input [(ngModel)]="user.address.street" [class.invalid]="form.controls['address'].controls['street'].touched
+                  && !form.controls['address'].controls['street'].valid" class="validate"
+                 formControlName="street" id="street"
+                 type="text">
+          <label [class.active]="user.address.street"
+                 data-error="Invalid Street"
+                 for="street">
+            Street
+          </label>
+        </div>
+        <div class="input-field col s4">
+          <input [(ngModel)]="user.address.suite" class="validate" formControlName="suite"
+                 id="suite" type="text">
+          <label [class.active]="user.address.suite" for="suite">Suite</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8">
+          <i class="material-icons prefix">map</i>
+          <input [(ngModel)]="user.address.city" class="validate" formControlName="city"
+                 id="city" type="text">
+          <label [class.active]="user.address.city" for="city">City</label>
+        </div>
+        <div class="input-field col s4">
+          <input [(ngModel)]="user.address.zipcode" [class.invalid]="form.controls['address'].controls['zipcode'].touched
+                  && !form.controls['address'].controls['zipcode'].valid" class="validate"
+                 formControlName="zipcode" id="zipcode"
+                 type="text">
+          <label [class.active]="user.address.zipcode"
+                 data-error="Invalid ZipCode"
+                 for="zipcode">
+            ZipCode
+          </label>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="!form.valid" class="btn waves-effect waves-light"
+            type="submit">
+      Submit<i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
